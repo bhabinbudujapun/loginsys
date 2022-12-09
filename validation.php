@@ -4,7 +4,7 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// $stmt = $conn->prepare("SELECT * FROM test.logindb WHERE 
+// $stmt = $conn->prepare("SELECT * FROM users.logindb WHERE 
 //         '$username'==username && '$password'==password");
 
 // $stmt->execute();
@@ -15,13 +15,13 @@ $userName = "root";
 $password = "";
 
 try {
-    $conn = new PDO("mysql:host=$serverName;dbame=test", $userName, $password);
+    $conn = new PDO("mysql:host=$serverName;dbame=users", $userName, $password);
 
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //FETCH THE VALUES
-    $stmt = $conn->prepare("SELECT * FROM test.logindb");
+    $stmt = $conn->prepare("SELECT * FROM users.logindb");
     $stmt->execute();
     $login = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
