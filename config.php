@@ -1,7 +1,7 @@
 <?php
 define('ABSPATH', __DIR__);
 
-require 'core/base_controller.php';
+require 'core/main_controller.php';
 
 // # define all the app configuration here
 // $config = [

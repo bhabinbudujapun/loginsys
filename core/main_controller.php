@@ -11,14 +11,17 @@ class Main_Controller
         // echo $str."basec" . "<br>";
 
         $str = $_GET['query'];
-        echo $str . "basec" . "<br>";
 
         //Seperating the string according to '/'
         $result = explode("/", $str);
 
-        include ABSPATH . '/controllers/' . $result[0] . '.php';
-        $obj = new $result[0];
-        $obj->$result[1];
+        include ABSPATH . '/controllers/' . $result[0] . '_controller.php';
+
+        $class = $result[0];
+        $method = $result[1];
+
+        $obj = new $class;
+        $obj->$method();
     }
 }
 new Main_Controller();
