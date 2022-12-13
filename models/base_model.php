@@ -1,10 +1,13 @@
 <?php
-class Database
+class base_model
 {
     protected $conn;
 
     public function __construct()
     {
+        //TEST
+        // $str = $_GET['query'];
+        // echo $str."basem". "<br>";
     }
 
     public function query()
@@ -27,3 +30,4 @@ class Database
     {
     }
 }
+new base_model();
