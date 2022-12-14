@@ -1,13 +1,14 @@
 <?php
-class Admin extends Main_Controller
+
+class admin
 {
-    public function __construct()
+    public function index()
     {
-        echo 'Hello world(loginSys)';
+        include 'views/login.php';
     }
 
-    public function test()
+    public function dashboard()
     {
-        echo 'Test Function(loginSys)';
+        include 'views/dashboard.php';
     }
 }

@@ -10,7 +10,6 @@ class database
     public function __construct()
     {
         try {
-
             //TEST 
             // $str = $_GET['query'];
             // echo $str . "basedb" . "<br>";
@@ -22,7 +21,7 @@ class database
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (PDOException $e) {
-            echo "Connection Failed: " . $e->getMessage();
+            die("Connection Failed: " . $e->getMessage());
         }
     }
 }

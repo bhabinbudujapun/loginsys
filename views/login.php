@@ -13,8 +13,12 @@
                     <label for="Password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="Password" required>
                 </div>
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="login" class="btn btn-primary">LOGIN</button><br><br>
+                <p>Create your accout. For free!</p>
             </div>
+        </form>
+        <form action="" method="POST">
+            <button type="submit" name="signin" class="btn btn-primary">SIGNUP</button><br><br>
         </form>
     </div>
 </div>

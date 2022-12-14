@@ -1,5 +1,5 @@
 <?php
-define('ABSPATH', __DIR__);
+define('ABSPATH', 'http://localhost/loginsys/');
 
 require 'core/main_controller.php';
 

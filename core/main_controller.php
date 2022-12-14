@@ -3,25 +3,24 @@
 class Main_Controller
 {
     // public static $count = 0;
-
     public function __construct()
     {
-        //TEST
-        // $str = $_GET['query'];
-        // echo $str."basec" . "<br>";
+        if (isset($_GET['query'])) {
+            $query = $_GET['query'];
 
-        $str = $_GET['query'];
+            //Seperating the string according to '/'
+            $result = explode("/", $query);
 
-        //Seperating the string according to '/'
-        $result = explode("/", $str);
+            // FORMAT FOR PATH <<- include 'controllers/admin_controller.php'; ->> 
+            include 'controllers/' . $result[0] . '_controller.php';
 
-        include ABSPATH . '/controllers/' . $result[0] . '_controller.php';
-
-        $class = $result[0];
-        $method = $result[1];
-
-        $obj = new $class;
-        $obj->$method();
+            $class = $result[0];
+            $method = $result[1];
+            $obj = new $class;
+            $obj->$method();
+        } else {
+            include 'views/login.php';
+        }
     }
 }
 new Main_Controller();
