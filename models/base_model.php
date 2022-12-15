@@ -1,33 +1,41 @@
 <?php
-class base_model
+include 'models/database.php';
+
+class Base_model
 {
-    protected $conn;
+    public $table_name;
+    public $conn;
 
-    public function __construct()
+    public function checkValidation($user_credentials)
     {
-        //TEST
-        // $str = $_GET['query'];
-        // echo $str."basem". "<br>";
-    }
+        // $stmt = $this->conn->prepare("SELECT * FROM $this->table WHERE email = ? AND password = ?");
 
-    public function query()
-    {
-    }
+        // $stmt->bindValue(1, $user_credentials[0]);
+        // $stmt->bindValue(2, $user_credentials[1]);
+        // $stmt->execute();
 
-    public function get_insert_id()
-    {
-    }
+        // return $user_credentials;
+        // return $stmt->rowCount();
 
-    public function get_affected_rows()
-    {
-    }
+        // Connect to the database
+        // $pdo = new PDO('mysql:host=localhost;dbname=mydatabase', 'username', 'password');
 
-    public function get_results()
-    {
-    }
+        // Define the email and password to be authenticated
+        $email = $user_credentials[0];
+        $password = $user_credentials[1];
 
-    public function get_row()
-    {
+        // Retrieve the user's record from the database
+        $stmt = $this->conn->prepare('SELECT * FROM $this->table WHERE email = ?');
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        // Check if the provided password matches the hashed password stored in the database
+        if (password_verify($password, $user['password'])) {
+            // The password matches, so return 1 to indicate success
+            return 1;
+        } else {
+            // The password does not match, so return 0 to indicate failure
+            return 0;
+        }
     }
 }
-new base_model();

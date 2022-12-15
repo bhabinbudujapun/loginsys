@@ -3,7 +3,7 @@
 <div class="container">
     <div class="col-md-6">
         <h3 style="text-align:center;">Login Form</h3>
-        <form action="" method="POST">
+        <form action="admin/dashboard" method="POST">
             <div class="form-group">
                 <div class="mb-3">
                     <label for="Email" class="form-label">Email address</label>

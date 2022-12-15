@@ -20,6 +20,7 @@ class Main_Controller
             $obj->$method();
         } else {
             include 'views/login.php';
+            // include 'views/dashboard.php';
         }
     }
 }
