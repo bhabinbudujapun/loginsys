@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'models/adminusers.php';
+// include 'views/dashboard.php';
 
 class admin
 {
@@ -15,21 +16,34 @@ class admin
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            // echo 'hello world555';
             $user_credentials = array($email, $password);
             $admin_obj = new User();
             $result = $admin_obj->checkValidation($user_credentials);
-            // echo $result[0] . "<br>";
+            return $result;
+            // echo gettype($result) . "<br>";
+            // var_dump($result) . "<br>";
+            // if($result == false)
+            // echo
             // echo $result[1] . "<br>";
 
-            if ($result) {
-                $_SESSION['email'] = $user_credentials[0];
-                include 'view/dashboard.php';
-            }
-        } else {
-            echo 'Failed to login';
-            header('Location:' . ABSPATH);
-            exit();
+            // if ($result === false) {
+            //     // No matching rows were found.
+            //     return 'wrong';
+            // } else {
+            //     // A matching row was found.
+            //     return 'sccessfull';
+            // }
+
+            //     if ($result) {
+            //         $_SESSION['email'] = $user_credentials[0];
+            //         // include 'view/dashboard.php';
+            //         header('Location: http://localhost/loginsys/views/dashboard');
+            //     }
+            // } else {
+            //     echo 'Failed to login';
+            //     header('Location:' . ABSPATH);
+            //     exit();
+            // }
         }
     }
 }

@@ -8,34 +8,37 @@ class Base_model
 
     public function checkValidation($user_credentials)
     {
-        // $stmt = $this->conn->prepare("SELECT * FROM $this->table WHERE email = ? AND password = ?");
-
-        // $stmt->bindValue(1, $user_credentials[0]);
-        // $stmt->bindValue(2, $user_credentials[1]);
-        // $stmt->execute();
-
-        // return $user_credentials;
-        // return $stmt->rowCount();
-
-        // Connect to the database
-        // $pdo = new PDO('mysql:host=localhost;dbname=mydatabase', 'username', 'password');
-
         // Define the email and password to be authenticated
         $email = $user_credentials[0];
-        $password = $user_credentials[1];
+        $password = md5($user_credentials[1]);
 
-        // Retrieve the user's record from the database
-        $stmt = $this->conn->prepare('SELECT * FROM $this->table WHERE email = ?');
-        $stmt->execute([$email]);
+        // return $password;
+        $stmt = $this->conn->prepare("SELECT * FROM admins WHERE email = :email AND password = :password");
+        $stmt->execute([
+            'email' => $email,
+            'password' => $password,
+        ]);
+
         $user = $stmt->fetch();
+        // var_dump($user);
 
-        // Check if the provided password matches the hashed password stored in the database
-        if (password_verify($password, $user['password'])) {
-            // The password matches, so return 1 to indicate success
-            return 1;
-        } else {
-            // The password does not match, so return 0 to indicate failure
-            return 0;
-        }
+        // return $user;
+        // if ($user === false) {
+        //     // No matching rows were found.
+        //     return 'wrong';
+        // } else {
+        //     // A matching row was found.
+        //     return 'success';
+        // }
+
+        // $stmt = $this->conn->prepare('SELECT password FROM admins WHERE email = :email');
+        // $stmt->execute(['email' => $email]);
+        // $user = $stmt->fetch();
+        // // $hash_password = MD5($password);
+        // return $user;
+        // // if ($hash_password == $user[3])
+        // //     return true;
+        // // else
+        // //     return false;
     }
 }
