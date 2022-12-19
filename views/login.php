@@ -1,6 +1,6 @@
 <?php include "include/header.php" ?>
 
-<div class="container">
+<div class="container d-flex justify-content-center">
     <div class="col-md-6">
         <h3 style="text-align:center;">Login Form</h3>
         <form action="admin/dashboard" method="POST">
@@ -17,9 +17,7 @@
                 <p>Create your accout. For free!</p>
             </div>
         </form>
-        <form action="" method="POST">
-            <button type="submit" name="signin" class="btn btn-primary">SIGNUP</button><br><br>
-        </form>
+    <a href="/loginsys/views/signup.php" class="btn btn-primary text-right">SIGNUP</a>
     </div>
 </div>
 

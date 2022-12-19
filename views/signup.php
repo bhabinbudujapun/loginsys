@@ -1,6 +1,6 @@
 <?php include "include/header.php" ?>
 
-<div class="container">
+<div class="container d-flex justify-content-center">
     <div class="col-md-6">
         <h3 style="text-align:center;">Registration Form</h3>
         <form action="" method="POST">
@@ -33,9 +33,7 @@
                 <p>Login from here. If you have already an account</p>
             </div>
         </form>
-        <form action="/views/signup.php/">
-            <button type="submit" name="login" class="btn btn-primary">LOGIN</button><br><br>
-        </form>
+        <a href="/loginsys/" class="btn btn-primary text-right">LOGIN</a>
     </div>
 </div>
 
