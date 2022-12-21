@@ -1,5 +1,5 @@
 <?php
-class Login
+class Login_controller
 {
     public function index()
     {

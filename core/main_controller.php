@@ -1,25 +1,33 @@
 <?php
 class Main_Controller
 {
-    // public static $count = 0;
     public function __construct()
     {
-        if (isset($_GET['query'])) {
-            $query = $_GET['query'];
+        $url_query = isset($_GET['query']) ? $_GET['query'] :  'admin/index';
 
-            //Seperating the string according to '/'
-            $result = explode("/", $query);
+        //Seperating the string according to '/'
+        $query_result = explode("/", $url_query);
 
-            // FORMAT FOR PATH <<- include 'controllers/admin_controller.php'; ->> 
-            include 'controllers/' . $result[0] . '_controller.php';
+        if (file_exists('controllers/' . $query_result[0] . '_controller.php')) {
+            include 'controllers/' . $query_result[0] . '_controller.php';
+        } else {
+            echo "File Does Not Exist";
+            die;
+        }
 
-            $class = $result[0];
-            $method = $result[1];
-            $obj = new $class;
+        $class = ucfirst($query_result[0]) . '_controller';
+        $obj = new $class;
+
+        //Calling function according to url query
+        if (count($query_result) > 2) {
+            $method = $query_result[1];
+            $para = $query_result[2];
+            $obj->$method($para);
+        } elseif (count($query_result) > 1 && !(in_array('', $query_result))) {
+            $method = $query_result[1];
             $obj->$method();
         } else {
-            include 'views/login.php';
-            // include 'views/dashboard.php';
+            $obj->index();
         }
     }
 }

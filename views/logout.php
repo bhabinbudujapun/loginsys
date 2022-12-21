@@ -2,6 +2,6 @@
     session_start();
     session_destroy();
     session_unset();
-    header('Location: /loginsys/');
+    include 'views/login.php';
     exit;
 ?>

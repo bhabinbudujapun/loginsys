@@ -2,11 +2,16 @@
 session_start();
 include 'models/adminuser.php';
 
-class admin
+class Admin_controller
 {
-    public function index1()
+    public function index()
     {
         include 'views/login.php';
+    }
+
+    public function parameter($para = 1)
+    {
+        echo 'Function: parameter(' . $para . ')';
     }
 
     public function dashboard()
@@ -16,20 +21,25 @@ class admin
             $password = $_POST['password'];
 
             $user_credentials = array($email, $password);
-            $admin_obj = new adminUser();
+
+            $admin_obj = new AdminUser();
             $result = $admin_obj->checkValidation($user_credentials);
 
             //Return TRUE if email and password is match
             if ($result) {
                 $_SESSION['email'] = $user_credentials[0];
-                header('Location: /loginsys/views/dashboard.php');
+                include 'views/dashboard.php';
                 exit;
             } else {
-                header('Location: /loginsys/');
+                // var_dump($result);
+                // die;
+                header('location: views/login`');
                 exit;
             }
         } else {
-            header('Location: /loginsys/');
+            // echo 'main';
+            // die;
+            include 'views/login.php';
             exit;
         }
     }

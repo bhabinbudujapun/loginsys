@@ -1,7 +1,7 @@
 <?php
 include 'models/base_model.php';
 
-class adminUser extends Base_model
+class AdminUser extends Base_model
 {
     public $table = 'admin';
 
