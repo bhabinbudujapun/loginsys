@@ -1,7 +1,11 @@
 <?php
 include 'models/base_model.php';
 
+<<<<<<< HEAD
 class User extends Base_model
+=======
+class adminUser extends Base_model
+>>>>>>> 4d56aaf ('User_Side')
 {
     public $table = 'admin';
 
@@ -17,7 +21,10 @@ class User extends Base_model
         //Extracting data from $user_credentials arrary
         $email = $user_credentials[0];
         $password = md5($user_credentials[1]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d56aaf ('User_Side')
         $stmt = $this->conn->prepare("SELECT * FROM $this->table WHERE email = :email AND password = :password");
 
         $stmt->execute([
@@ -27,7 +34,11 @@ class User extends Base_model
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+<<<<<<< HEAD
         if($user)
+=======
+        if ($user)
+>>>>>>> 4d56aaf ('User_Side')
             return true;
         else
             return false;

@@ -16,7 +16,7 @@ class admin
             $password = $_POST['password'];
 
             $user_credentials = array($email, $password);
-            $admin_obj = new User();
+            $admin_obj = new adminUser();
             $result = $admin_obj->checkValidation($user_credentials);
 
             //Return TRUE if email and password is match
@@ -24,10 +24,21 @@ class admin
                 $_SESSION['email'] = $user_credentials[0];
                 header('Location: /loginsys/views/dashboard.php');
                 exit;
+<<<<<<< HEAD
                 }
             } else {
                 header('Location: /loginsys/views/login.php');
                 exit;
             }
+=======
+            } else {
+                header('Location: /loginsys/');
+                exit;
+            }
+        } else {
+            header('Location: /loginsys/');
+            exit;
+        }
+>>>>>>> 4d56aaf ('User_Side')
     }
 }

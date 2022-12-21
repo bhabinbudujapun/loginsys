@@ -15,12 +15,11 @@ class database
             //dsn - Data Source Name
             // $pdo = new PDO('mysql:host=localhost;dbname=mydb', 'username', 'password');
 
-            // $dsn = "mysql:host=" . $this->servername . ";dbname=" . $this->dbname;
-            // $pdo =  new PDO($dsn, $this->username, $this->password);
+            $dsn = "mysql:host=" . $this->servername . ";dbname=" . $this->dbname;
+            $this->conn =  new PDO($dsn, $this->username, $this->password);
 
-            $this->conn = new PDO('mysql:host=localhost;dbname=logsysdb', 'root', '');
-
-            //$this->conn = $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // $this->conn = new PDO('mysql:host=localhost;dbname=logsysdb', 'root', '');
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Connection Failed: " . $e->getMessage());
         }
