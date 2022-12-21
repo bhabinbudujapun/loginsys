@@ -24,13 +24,6 @@ class admin
                 $_SESSION['email'] = $user_credentials[0];
                 header('Location: /loginsys/views/dashboard.php');
                 exit;
-<<<<<<< HEAD
-                }
-            } else {
-                header('Location: /loginsys/views/login.php');
-                exit;
-            }
-=======
             } else {
                 header('Location: /loginsys/');
                 exit;
@@ -39,6 +32,5 @@ class admin
             header('Location: /loginsys/');
             exit;
         }
->>>>>>> 4d56aaf ('User_Side')
     }
 }
