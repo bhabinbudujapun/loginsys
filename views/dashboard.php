@@ -3,11 +3,11 @@ include "include/header.php";
 ?>
 
 <div class="container d-flex justify-content-between mb-3 mt-3">
-    <h4>Welcome, <strong><?php echo $_SESSION['email'] ?></strong></h4>
-    <a href="logout.php" class="btn btn-danger ml-auto">Logout</a>
+    <h4>Welcome, <strong><?php echo $_SESSION['username'] ?></strong></h4>
+    <a href="../user/logout" class="btn btn-danger ml-auto">Logout</a>
 </div>
 
-<?php if (isset($_SESSION['email'])) { ?>
+<?php if (isset($_SESSION['username'])) { ?>
 
     <div class="container d-flex justify-content-center">
         <table class="table">

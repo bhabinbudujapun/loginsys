@@ -1,7 +1,7 @@
 <?php
 include 'models/base_model.php';
 
-class AdminUser extends Base_model
+class User extends Base_model
 {
     public $table = 'admin';
 
@@ -27,8 +27,8 @@ class AdminUser extends Base_model
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user)
-            return true;
+            return $user;
         else
-            return false;
+            return $user;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'models/adminuser.php';
+include 'models/user.php';
 
 class Admin_controller
 {
@@ -9,6 +9,7 @@ class Admin_controller
         include 'views/login.php';
     }
 
+    //Test Function
     public function parameter($para = 1)
     {
         echo 'Function: parameter(' . $para . ')';
@@ -22,22 +23,22 @@ class Admin_controller
 
             $user_credentials = array($email, $password);
 
-            $admin_obj = new AdminUser();
+            $admin_obj = new User();
             $result = $admin_obj->checkValidation($user_credentials);
 
             //Return TRUE if email and password is match
             if ($result) {
-                $_SESSION['email'] = $user_credentials[0];
+                $_SESSION['username'] = $result['username'];
                 include 'views/dashboard.php';
                 exit;
             } else {
                 // var_dump($result);
                 // die;
-                header('location: views/login`');
+                include 'views/login.php';
                 exit;
             }
         } else {
-            // echo 'main';
+            // echo 'main else';
             // die;
             include 'views/login.php';
             exit;

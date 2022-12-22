@@ -5,7 +5,10 @@ class Main_Controller
     {
         $url_query = isset($_GET['query']) ? $_GET['query'] :  'admin/index';
 
-        //Seperating the string according to '/'
+        // echo $url_query;
+        // die;
+
+        //Seperating the separate according to '/'
         $query_result = explode("/", $url_query);
 
         if (file_exists('controllers/' . $query_result[0] . '_controller.php')) {
