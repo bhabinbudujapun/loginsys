@@ -12,20 +12,22 @@ class User extends Base_model
         $this->conn = $a->conn;
     }
 
-    public function checkValidation($user_credentials)
+    public function validate()
     {
-        //Extracting data from $user_credentials arrary
-        $email = $user_credentials[0];
-        $password = md5($user_credentials[1]);
-        $stmt = $this->conn->prepare("SELECT * FROM $this->table WHERE email = :email AND password = :password");
+        $user = '';
+        if (count($_POST)) {
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
+            $stmt = $this->conn->prepare("SELECT * FROM $this->table WHERE
+            email = :email AND password = :password");
 
-        $stmt->execute([
-            ':email' => $email,
-            ':password' => $password
-        ]);
+            $stmt->execute([
+                ':email' => $email,
+                ':password' => $password
+            ]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
         if ($user)
             return $user;
         else

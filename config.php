@@ -1,7 +1,7 @@
 <?php
 
 //http://localhost/loginsys/ equals to __DIR__
-define('ABSPATH', 'http://localhost/loginsys/');
+define('ABSPATH', 'http://localhost/loginsys');
 
 require 'core/main_controller.php';
 

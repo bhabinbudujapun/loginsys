@@ -3,10 +3,7 @@ class Main_Controller
 {
     public function __construct()
     {
-        $url_query = isset($_GET['query']) ? $_GET['query'] :  'admin/index';
-
-        // echo $url_query;
-        // die;
+        $url_query = isset($_GET['query']) ? $_GET['query'] :  'user/index';
 
         //Seperating the separate according to '/'
         $query_result = explode("/", $url_query);
