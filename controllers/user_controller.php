@@ -11,8 +11,7 @@ class User_controller
 
     public function logout()
     {
-        session_destroy();
-        include 'views/login.php';
+        include 'views/logout.php';
     }
 
     public function login()
@@ -21,6 +20,8 @@ class User_controller
         $result = $userObj->validate();
 
         if ($result) {
+            $userdata = $this->viewall();
+            $_SESSION['userdata'] = $userdata;
             $_SESSION['username'] = $result['username'];
             include 'views/dashboard.php';
             exit;
@@ -28,5 +29,18 @@ class User_controller
             include 'views/login.php';
             exit;
         }
+    }
+
+    public function viewall()
+    {
+        $userObj = new User();
+        $users = $userObj->allUser();
+        return $users;
+    }
+
+    public function edit()
+    {
+        echo "edit";
+        die;
     }
 }
