@@ -37,10 +37,16 @@ class Base_model
 
     public function allUser()
     {
-        $stmt = $this->conn->prepare('SELECT * FROM users');
+        // Prepare the SELECT statement
+        $sql = 'SELECT id, email, username, created_at, updated_at, address FROM users';
+        $stmt = $this->conn->prepare($sql);
+
+        // Execute the SELECT statement
         $stmt->execute();
-        $users = $stmt->fetchAll();
-        return $users;
+
+        // Fetch the result set as an associative array
+        $result = $stmt->fetchAll();
+        return $result;
     }
 
     public function editUser($name, $email, $id)

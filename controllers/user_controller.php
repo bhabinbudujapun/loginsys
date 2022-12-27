@@ -20,7 +20,7 @@ class User_controller
         $result = $userObj->validate();
 
         if ($result) {
-            $userdata = $this->viewall();
+            $userdata = $userObj->allUser();
             $_SESSION['userdata'] = $userdata;
             $_SESSION['username'] = $result['username'];
             include 'views/dashboard.php';
@@ -33,14 +33,27 @@ class User_controller
 
     public function viewall()
     {
-        $userObj = new User();
-        $users = $userObj->allUser();
-        return $users;
+        if (isset($_SESSION['username'])) {
+            $userObj = new User();
+            $userdata = $userObj->allUser();
+            $_SESSION['userdata'] = $userdata;
+            include 'views/dashboard.php';
+        } else {
+            include 'views/login.php';
+            exit;
+        }
+    }
+
+    public function add(){
+        echo 'add function';
+        die;
     }
 
     public function edit()
     {
-        echo "edit";
+        echo "edit function" . '<br>';
         die;
+        $userObj = new User();
+        $userObj->allUser();
     }
 }

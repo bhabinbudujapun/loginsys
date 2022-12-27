@@ -5,7 +5,7 @@ include "include/header.php";
 
     <div class="container d-flex justify-content-between mb-3 mt-3">
         <h4>Welcome, <strong><?php echo $_SESSION['username'] ?></strong></h4>
-        <a href="user/logout" class="btn btn-danger ml-auto">Logout</a>
+        <a href=<?= ABSPATH . "/user/logout/" ?> class="btn btn-warning text-white ml-auto">Logout</a>
     </div>
 
     <div class="container d-flex justify-content-center">
@@ -24,30 +24,38 @@ include "include/header.php";
             <tbody>
                 <?php
                 $users = $_SESSION['userdata'];
-                for ($i = 0; $i < count($users); $i++) {
+                foreach ($users as $key) {
                 ?>
                     <tr>
-                        <?php
-                        for ($j = 0; $j < 7; $j++) {
-                            if ($j == 3)
-                                continue;
-                        ?>
-                            <td> <?php echo $users[$i][$j] ?> </td>
+                        <td> <?php echo $key['id'] ?> </td>
+                        <td> <?php echo $key['email'] ?> </td>
+                        <td> <?php echo $key['username'] ?> </td>
+                        <td> <?php echo $key['created_at'] ?> </td>
+                        <td> <?php echo $key['updated_at'] ?> </td>
+                        <td> <?php echo $key['address'] ?> </td>
 
-                        <?php } ?>
                         <td>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="user/edit" class="btn btn-primary float-right">Edit</a>
+                                        <a href=<?= ABSPATH . "/user/edit" ?> class="btn btn-primary float-right">Edit</a>
                                         <a href="#" class="btn btn-danger float-right">Delete</a>
                                     </div>
                                 </div>
                             </div>
                         </td>
+                    <?php } ?>
                     </tr>
-                <?php } ?>
             </tbody>
+            <tfoot>
+                <tfoot>
+                    <tr>
+                        <td colspan="1">
+                            <a href="user/add" class="btn btn-success">Add</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </tfoot>
         </table>
     </div>
 
