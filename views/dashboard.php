@@ -28,18 +28,18 @@ include "include/header.php";
                 ?>
                     <tr>
                         <td> <?php echo $key['id'] ?> </td>
-                        <td> <?php echo $key['email'] ?> </td>
-                        <td> <?php echo $key['username'] ?> </td>
+                        <td><span id='email'><?php echo $key['email'] ?> </span> </td>
+                        <td><span id='username'><?php echo $key['username'] ?> </span> </td>
                         <td> <?php echo $key['created_at'] ?> </td>
                         <td> <?php echo $key['updated_at'] ?> </td>
-                        <td> <?php echo $key['address'] ?> </td>
-
+                        <td><span id='address'><?php echo $key['address'] ?> </span> </td>
                         <td>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href=<?= ABSPATH . "/user/edit" ?> class="btn btn-primary float-right">Edit</a>
-                                        <a href="#" class="btn btn-danger float-right">Delete</a>
+                                        <!-- Link to open the modal -->
+                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-primary float-right edit">Edit</a>
+                                        <a href="#" class="btn btn-danger float-right" onclick="return confirm('Are you sure you want to continue?');">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -51,19 +51,37 @@ include "include/header.php";
                 <tfoot>
                     <tr>
                         <td colspan="1">
-                            <a href="user/add" class="btn btn-success">Add</a>
+                            <!-- Link to show popup form -->
+                            <!-- Anchor tag to trigger modal-->
+                            <!-- <a href="#" data-target="#editModal" data-toggle="modal" class="edit">Edit</a> -->
+                            <a href=<?= ABSPATH . "/user/add" ?> data-target="#form-modal" data-toggle="modal" class="btn btn-success">Add</a>
                         </td>
                     </tr>
                 </tfoot>
             </tfoot>
         </table>
     </div>
+    <?php require_once 'modal.php' ?>
 
-<?php } else {
-    include
-        header('Location: /loginsys/');
-    exit;
-}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.edit', function() {
+                var email = $('#email').text(); // get email
+                var username = $('#username').text(); // get username
+                var address = $('#address').text(); //get address
+                $('#editModal').modal('show'); //load modal
+                $('#email').val(email);
+                $('#username').val(username);
+                $('#address').val(address);
+            });
+        });
+    </script>
+
+<?php }
+// else {
+//     require_once ABSPATH;
+//     exit;
+// }
 ?>
 
 <?php include "include/footer.php" ?>

@@ -44,14 +44,22 @@ class User_controller
         }
     }
 
-    public function add(){
+    public function add()
+    {
         echo 'add function';
+
+        // Retrieve the value of the 'email' field from the form
+        $email = $_POST['email'];
+        echo $email;
         die;
     }
 
     public function edit()
     {
         echo "edit function" . '<br>';
+        // Retrieve the value of the 'email' field from the form
+        $email = $_POST['email'];
+        echo $email;
         die;
         $userObj = new User();
         $userObj->allUser();
