@@ -11,5 +11,4 @@ class User extends Base_model
         $a = new database();
         $this->conn = $a->conn;
     }
-
 }

@@ -35,6 +35,19 @@ class Base_model
             return $user;
     }
 
+    public function addUser($email, $username, $address)
+    {
+        $date = date("Y-m-d H:i:s");
+        $stmt = $this->conn->prepare("INSERT INTO users (id, email, username, created_at, updated_at, address) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bindValue(1, null);
+        $stmt->bindValue(2, $email);
+        $stmt->bindValue(3, $username);
+        $stmt->bindValue(4, $date);
+        $stmt->bindValue(5, $date);
+        $stmt->bindValue(6, $address);
+        return $stmt->execute();
+    }
+
     public function allUser()
     {
         // Prepare the SELECT statement

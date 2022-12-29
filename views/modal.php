@@ -3,28 +3,28 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Form</h5>
+                <h5 class="modal-title" id="editModalLabel">Edit User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Form to edit user information -->
                 <form action=<?= ABSPATH . "/user/edit" ?> method="POST">
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                        <input type="text" class="form-control" id="eemail" name='email' required>
                     </div>
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                        <input type="text" class="form-control" id="eusername" name='username' required>
                     </div>
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" required>
+                        <input type="text" class="form-control" id="eaddress" name='address' required>
                     </div>
+                    <input type="hidden" class="form-control" id="eid" name='id' required>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -44,7 +44,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action=<?= ABSPATH . "/user/add/" ?> method="POST">
+                <form action=<?= ABSPATH . "/user/add" ?> method="POST">
                     <div class="form-group" style="margin-bottom: 10px;">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name='username' placeholder="Enter username" required>

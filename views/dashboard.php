@@ -27,19 +27,19 @@ include "include/header.php";
                 foreach ($users as $key) {
                 ?>
                     <tr>
-                        <td> <?php echo $key['id'] ?> </td>
-                        <td><span id='email'><?php echo $key['email'] ?> </span> </td>
-                        <td><span id='username'><?php echo $key['username'] ?> </span> </td>
+                        <td id="id"> <?php echo $key['id'] ?> </td>
+                        <td id="email"> <?php echo $key['email'] ?> </td>
+                        <td id="username"> <?php echo $key['username'] ?> </td>
                         <td> <?php echo $key['created_at'] ?> </td>
                         <td> <?php echo $key['updated_at'] ?> </td>
-                        <td><span id='address'><?php echo $key['address'] ?> </span> </td>
+                        <td id="address"> <?php echo $key['address'] ?> </td>
                         <td>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- Link to open the modal -->
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-primary float-right edit">Edit</a>
-                                        <a href="#" class="btn btn-danger float-right" onclick="return confirm('Are you sure you want to continue?');">Delete</a>
+                                        <a data-toggle="modal" data-target="#editModal" data-id="<?php echo $key['id'] ?>" data-email="<?php echo $key['email'] ?>" data-username="<?php echo $key['username'] ?>" data-address="<?php echo $key['address'] ?>" class="btn btn-primary float-right edit">Edit</a>
+                                        <a class="btn btn-danger float-right" onclick="return confirm('Are you sure you want to continue?');">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -51,10 +51,7 @@ include "include/header.php";
                 <tfoot>
                     <tr>
                         <td colspan="1">
-                            <!-- Link to show popup form -->
-                            <!-- Anchor tag to trigger modal-->
-                            <!-- <a href="#" data-target="#editModal" data-toggle="modal" class="edit">Edit</a> -->
-                            <a href=<?= ABSPATH . "/user/add" ?> data-target="#form-modal" data-toggle="modal" class="btn btn-success">Add</a>
+                            <a href="#" data-target="#form-modal" data-toggle="modal" class="btn btn-success">Add</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -63,25 +60,28 @@ include "include/header.php";
     </div>
     <?php require_once 'modal.php' ?>
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
+            // When the 'edit' button is clicked
             $(document).on('click', '.edit', function() {
-                var email = $('#email').text(); // get email
-                var username = $('#username').text(); // get username
-                var address = $('#address').text(); //get address
-                $('#editModal').modal('show'); //load modal
-                $('#email').val(email);
-                $('#username').val(username);
-                $('#address').val(address);
+                // Retrieve the data from the anchor tag
+                var id = $(this).data('id');
+                var email = $(this).data('email');
+                var username = $(this).data('username');
+                var address = $(this).data('address');
+
+                // Show the modal form
+                $('#editModal').modal('show');
+
+                // Set the values of the form fields to the data from the anchor tag
+                $('#eid').val(id);
+                $('#eemail').val(email);
+                $('#eusername').val(username);
+                $('#eaddress').val(address);
             });
         });
     </script>
 
-<?php }
-// else {
-//     require_once ABSPATH;
-//     exit;
-// }
-?>
+<?php } ?>
 
 <?php include "include/footer.php" ?>
